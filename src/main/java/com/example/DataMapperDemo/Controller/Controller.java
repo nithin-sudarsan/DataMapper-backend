@@ -63,9 +63,5 @@ public class Controller {
         System.out.println(transformed);
         return transformed;
     }
-    @GetMapping("/")
-    public String hello(){
-        return "Hello World";
-    }
 }
 
