@@ -1,17 +1,19 @@
-<?xml version="1.0" encoding="UTF-8"?>
 <settings xmlns="http://maven.apache.org/SETTINGS/1.0.0"
           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-          xsi:schemaLocation="http://maven.apache.org/SETTINGS/1.0.0 http://maven.apache.org/xsd/settings-1.0.0.xsd">
+          xsi:schemaLocation="http://maven.apache.org/SETTINGS/1.0.0
+                      http://maven.apache.org/xsd/settings-1.0.0.xsd">
+
     <activeProfiles>
         <activeProfile>github</activeProfile>
     </activeProfiles>
+
     <profiles>
         <profile>
             <id>github</id>
             <repositories>
                 <repository>
                     <id>central</id>
-                    <url>https://repo.maven.apache.org/maven2</url>
+                    <url>https://repo1.maven.org/maven2</url>
                 </repository>
                 <repository>
                     <id>github</id>
@@ -19,9 +21,6 @@
                     <snapshots>
                         <enabled>true</enabled>
                     </snapshots>
-                    <releases>
-                        <enabled>true</enabled>
-                    </releases>
                 </repository>
             </repositories>
         </profile>
@@ -31,8 +30,7 @@
         <server>
             <id>github</id>
             <username>nithin-sudarsan</username>
-            <password>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</password>
+            <password>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</password>
         </server>
     </servers>
-
 </settings>
