@@ -38,7 +38,6 @@ public class Controller {
         System.out.println(transformed);
         return transformed;
     }
-    //Enter rules
     @PostMapping("/str")
     public String mapperDemo(
             @RequestParam("file") MultipartFile file,
