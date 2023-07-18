@@ -42,6 +42,12 @@
 		<repository>
 			<id>github</id>
 			<url>https://maven.pkg.github.com/nithin-sudarsan/data-mapper</url>
+			<releases>
+				<enabled>true</enabled>
+			</releases>
+			<snapshots>
+				<enabled>true</enabled>
+			</snapshots>
 		</repository>
 	</repositories>
 	<build>
