@@ -10,6 +10,7 @@ import java.nio.charset.StandardCharsets;
 @RequestMapping("api/dataMapper")
 @RequiredArgsConstructor
 public class Controller {
+    //File upload
     @PostMapping("/file")
     public String mapperDemo(
             @RequestParam("file") MultipartFile file,
@@ -37,6 +38,7 @@ public class Controller {
         System.out.println(transformed);
         return transformed;
     }
+    //Enter rules
     @PostMapping("/str")
     public String mapperDemo(
             @RequestParam("file") MultipartFile file,
