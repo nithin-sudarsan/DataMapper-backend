@@ -5,9 +5,7 @@ COPY .netrc /root/.netrc
 
 COPY . .
 ARG GITHUB_TOKEN
-RUN mvn clean
-RUN mvn compile
-RUN mvn install
+RUN mvn clean install
 
 # Remove the .netrc file from the build stage
 RUN rm /root/.netrc
