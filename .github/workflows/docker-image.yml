@@ -1,0 +1,48 @@
+name: Docker Image CI
+
+on:
+  push:
+    branches: [ "master" ]
+  pull_request:
+    branches: [ "master" ]
+env:
+  #JAVA
+  JAVA_VERSION: 17
+  
+  
+jobs:
+
+  deploy:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+    - name: Setup Java JDK 17
+      uses: actions/setup-java@v1.4.3
+      with:
+        java-version: ${{env.JAVA_VERSION}}
+
+    - name: Build Number
+      id: build-number
+      run: echo "::set-output name=BUILD_NUMBER::$(date '+%-d.%-m.%Y.%-H.%-M.%-S')"
+      
+    - name: Login to Docker Hub
+      uses: docker/login-action@v1
+      with:
+        username: ${{ secrets.DOCKER_HUB_USERNAME }}
+        password: ${{ secrets.DOCKER_HUB_TOKEN }}
+    - name: Maven Clean install and Push to Dockerhub
+      run: ./mvnw clean install jib -Djib.to.image=nithin-sudarsan/datamapper-backend:${{steps.build-number.outputs.BUILD_NUMBER}}
+      
+    - name: Update and commit app version in docker-compose.yaml
+      run: |
+        BUILD_NUMBER=${{steps.build-number.outputs.BUILD_NUMBER}}
+        echo -e "Current elb/docker-compose.yaml\n$(cat elb/docker-compose.yaml)"
+        sed -i -E 's_(nithin-sudarsan/datamapper-backend:)([^"]*)_\1'${BUILD_NUMBER}'_' elb/docker-compose.yaml 
+        echo -e "Current elb/docker-compose.yaml\n$(cat elb/docker-compose.yaml)"
+        git config user.name github-actions
+        git config user.email github-actions@github.com
+        git add elb/docker-compose.yaml
+        git commit -m "New app version: ${BUILD_NUMBER}"
+        git push
