@@ -1,7 +1,5 @@
 FROM maven:3.8.5-openjdk-17 AS build
 COPY . .
-ARG GITHUB_TOKEN
-ENV GITHUB_TOKEN=$GITHUB_TOKEN
 RUN mvn clean package -DskipTests -Dmaven.repo.local=/m2repo
 
 FROM openjdk:17.0.1-jdk-slim
