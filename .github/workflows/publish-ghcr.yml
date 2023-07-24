@@ -17,5 +17,5 @@ jobs:
       - name: Build and push the image
         run: |
          docker login --username nithin-sudarsan --password ${{secrets.GH_PAT}} ghcr.io
-         ./mvnw -X clean install jib:dockerBuild
+         ./mvnw -s $GITHUB_WORKSPACE/.github/workflows/maven-settings.xml -X clean install jib:dockerBuild
          docker push 
