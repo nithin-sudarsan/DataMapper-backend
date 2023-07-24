@@ -7,9 +7,9 @@ jobs:
   build_and_publish:
     runs-on: ubuntu-latest
     steps:
-      -uses: actions/checkout@v3
-      -name: Build and push the image
-       run: |
+      - uses: actions/checkout@v3
+      - name: Build and push the image
+        run: |
          docker login --username nithin-sudarsan --password ${{secrets.GH_PAT}} ghcr.io
          docker build . --tag ghcr.io/nithin-sudarsan/data-mapper-ghcr:latest
          docker push ghcr.io/nithin-sudarsan/data-mapper-ghcr:latest
