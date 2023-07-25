@@ -15,6 +15,6 @@ jobs:
           distribution: 'adopt'
           
       - name: Build and push the image
-        run:  ./mvnw -s $GITHUB_WORKSPACE/.github/workflows/maven-settings.xml -X clean install jib:dockerBuild
+        run:  ./mvnw -X clean install jib:dockerBuild
 #          docker push 
          
