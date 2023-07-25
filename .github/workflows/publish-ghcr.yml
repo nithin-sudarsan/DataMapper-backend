@@ -15,7 +15,7 @@ jobs:
           distribution: 'adopt'
           
       - name: Build and push the image
-        run:  ./mvnw -s "$GITHUB_WORKSPACE/settings.xml" -X clean install jib:dockerBuild
+        run:  ./mvnw -s $GITHUB_WORKSPACE/settings.xml -X clean install jib:dockerBuild
 
 #         ./mvnw -X clean install jib:dockerBuild
 #          docker push 
