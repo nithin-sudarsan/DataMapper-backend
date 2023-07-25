@@ -18,9 +18,6 @@
                 <repository>
                     <id>github</id>
                     <url>https://maven.pkg.github.com/nithin-sudarsan/data-mapper</url>
-                    <snapshots>
-                        <enabled>true</enabled>
-                    </snapshots>
                 </repository>
             </repositories>
         </profile>
@@ -30,7 +27,7 @@
         <server>
             <id>github</id>
             <username>nithin-sudarsan</username>
-            <password>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</password>
+            <password>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</password>
         </server>
         <server>
             <id>registry.hub.docker.com</id>
