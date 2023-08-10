@@ -4,6 +4,15 @@ on:
   push
 
 jobs: 
+  test:
+      runs-on: ubuntu-latest
+      container:
+        image: ubuntu:latest
+      steps:
+        - uses: actions/checkout@v3
+        - run: |
+            echo ${{ github.workspace }}
+            echo $GITHUB_WORKSPACE
   build_and_publish:
     runs-on: ubuntu-latest
     steps:
@@ -15,6 +24,8 @@ jobs:
           distribution: 'adopt'
           
       - name: Build and push the image
-        run:  ./mvnw -X clean install jib:dockerBuild
+        run:  ./mvnw -s $GITHUB_WORKSPACE/settings.xml -X clean install jib:dockerBuild
+
+#         ./mvnw -X clean install jib:dockerBuild
 #          docker push 
          
