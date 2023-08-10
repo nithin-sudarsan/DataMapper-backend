@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 
@@ -69,7 +70,13 @@ public class Controller {
     public String generateMapStructInterface(@RequestParam("rules") MultipartFile rules){
         DataMapper dataMapper = new DataMapperImpl();
         try {
-            return dataMapper.generateMapStructInterfaceString((File) rules);
+            File tempFile = File.createTempFile("temp", ".txt");
+            try (FileOutputStream fos = new FileOutputStream(tempFile)) {
+                fos.write(rules.getBytes());
+            }
+            String mapperInterface = dataMapper.generateMapStructInterfaceString(tempFile);
+            tempFile.delete();
+            return mapperInterface;
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
