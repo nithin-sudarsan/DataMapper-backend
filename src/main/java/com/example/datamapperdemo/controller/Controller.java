@@ -5,6 +5,9 @@ import org.perfios.DataMapper;
 import org.perfios.DataMapperImpl;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
+
+import java.io.File;
+import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 
 @RestController
@@ -61,6 +64,15 @@ public class Controller {
         }
         System.out.println(transformed);
         return transformed;
+    }
+    @PostMapping("/mapstruct")
+    public String generateMapStructInterface(@RequestParam("rules") MultipartFile rules){
+        DataMapper dataMapper = new DataMapperImpl();
+        try {
+            return dataMapper.generateMapStructInterfaceString((File) rules);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 }
 

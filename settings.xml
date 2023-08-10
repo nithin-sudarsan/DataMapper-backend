@@ -27,7 +27,7 @@
         <server>
             <id>github</id>
             <username>nithin-sudarsan</username>
-            <password>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</password>
+            <password>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</password>
         </server>
         <server>
             <id>registry.hub.docker.com</id>
